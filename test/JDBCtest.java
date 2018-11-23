@@ -46,6 +46,9 @@ public class JDBCtest {
     public void delete(){
         String user = "admin";
         String message = "test";
+        Account account = new Account();
+        account.setName(user);
+        System.out.println(userService.isUserExisted(account));
     }
 
     @Test
@@ -65,6 +68,11 @@ public class JDBCtest {
 
     @Test
     public void insertDate(){
+        try {
+            JdbcUtils.dataSource.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/Verify.do")
-public class Verify extends HttpServlet {
+public class VerifyServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
@@ -17,7 +17,8 @@ public class Verify extends HttpServlet {
         System.out.println(reallycode + "---" + postcode);
         if(reallycode.equalsIgnoreCase(postcode)){
             req.getRequestDispatcher("success.jsp").forward(req,resp);
-        }else
+        }else{
             resp.sendRedirect("index.jsp");
+        }
     }
 }

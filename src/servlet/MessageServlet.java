@@ -44,6 +44,7 @@ public class MessageServlet extends HttpServlet {
             User user = new User(StringEscapeUtils.getRandomString(), username, StringEscapeUtils.nowTime(),
                     blabla);
             userService.addUser(user);
+            session.setAttribute("users",userService.getUsers(user));
             resp.sendRedirect(SUCCESS_VIEW);
         }
     }

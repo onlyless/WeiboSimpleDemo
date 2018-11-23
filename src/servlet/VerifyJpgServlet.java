@@ -12,17 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 
-@WebServlet("/VerifyCode.do")
-public class VerifyCode  extends HttpServlet {
+@WebServlet("/VerifyCode.jpg")
+public class VerifyJpgServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) {
         resp.setContentType("image/jpg");
-        VerifyUtils generateCode = VerifyUtils.getInstance();
+        VerifyUtils verifyUtils = VerifyUtils.getInstance();
         try {
             OutputStream outputStream = resp.getOutputStream();
             JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(outputStream);
-            encoder.encode(generateCode.createImage());
-            req.getSession(false).setAttribute("verify",generateCode.getCode());
+            encoder.encode(verifyUtils.createImage());
+            req.getSession(false).setAttribute("verify",verifyUtils.getCode());
             outputStream.close();
         } catch (IOException e) {
             e.printStackTrace();

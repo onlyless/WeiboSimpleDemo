@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: onlyless
@@ -9,16 +10,16 @@
 <div>
     <nav>
         <a href="/">Home</a>
-        <%
-            String username = (String)request.getSession(false).getAttribute("login");
-            if(username!=null){
-                out.print("<a href=\"/member.jsp\">"+username+"</a>");
-            }else {
-                out.print("<a href=\"/login.jsp\">Login</a>");
-            }
-        %>
+        <c:choose>
+            <c:when test="${sessionScope.login!=null}">
+                <a href="/member.jsp">${sessionScope.login}</a>
+            </c:when>
+            <c:otherwise>
+                <a href="/login.jsp">Login</a>
+            </c:otherwise>
+        </c:choose>
 
-        <a href="/logout.jsp">Logout</a>
+        <a href="/logout.do">Logout</a>
         <a href="/register.jsp">register</a>
         <a href="/success.jsp">success</a>
         <a href="/error.jsp">error</a>

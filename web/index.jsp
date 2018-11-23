@@ -1,5 +1,4 @@
 <%@ page import="Listener.OnlineUserCounter" %>
-<%@ page import="java.util.List" %>
   <%--Created by IntelliJ IDEA.--%>
   <%--User: onlyless--%>
   <%--Date: 11/17/18--%>

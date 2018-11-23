@@ -23,7 +23,7 @@
             <td><input type="password" size="25" maxlength="100" name="password"></td>
         </tr>
         <tr>
-            <td><img src="/VerifyCode.do"></td>
+            <td><img src="/VerifyCode.jpg"></td>
             <td><input type="text" name="verifyCode" maxlength="4"></td>
         </tr>
         <tr>

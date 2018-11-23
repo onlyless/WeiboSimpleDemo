@@ -12,6 +12,6 @@
 </head>
 <body>
 <%@include file="top.jsp"%>
-<h1>${param.login}success</h1>
+<h1>${sessionScope.login} success</h1>
 </body>
 </html>

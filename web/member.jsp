@@ -14,7 +14,7 @@
 </head>
 <body>
 <%@include file="top.jsp"%>
-<h1>会员<%=username%>，你好</h1>
+<h1>会员${sessionScope.login}，你好</h1>
 <div>
     <form action="/message.do" method="post">
         <table>
@@ -41,28 +41,13 @@
                 <th>时间</th>
                 <th>内容</th>
             </tr>
-            <%--<c:forEach var="user" items="${requestScope.users}">--%>
-                <%--<tr>--%>
-                    <%--<td><c:out value="${user.date}"/></td>--%>
-                    <%--<td><c:out value="${user.txt}"/></td>--%>
-                    <%--<td><a href="delete.do?id=${user.id}">删除</a> </td>--%>
-                <%--</tr>--%>
-            <%--</c:forEach>--%>
-    <%
-        UserService userService = (UserService) application.getAttribute("userService");
-        User t = new User();
-        t.setUsername(username);
-        List<User> blahs = userService.getUsers(t);
-        for(User blah:blahs){
-            %>
-            <tr>
-                <td><%=blah.getDate()%></td>
-                <td><%=blah.getTxt()%></td>
-                <td><a href="delete.do?id=<%=blah.getId()%>">删除</a> </td>
-            </tr>
-    <%
-        }
-    %>
+            <c:forEach var="user" items="${sessionScope.users}">
+                <tr>
+                    <td>${user.date}</td>
+                    <td>${user.txt}</td>
+                    <td><a href="/delete.do?id=${user.id}">删除</a> </td>
+                </tr>
+            </c:forEach>
         </table>
     </form>
 </div>

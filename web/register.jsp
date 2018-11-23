@@ -12,7 +12,7 @@
   </head>
   <body>
   <%@include file="top.jsp"%>
-  <form method="post" action="register.do" name="login">
+  <form method="post" action="/register.do" name="login">
     <table>
       <tr>
         <td>邮箱</td>

@@ -20,7 +20,7 @@ import java.util.List;
             @WebInitParam(name = "ERROR_VIEW",value = "error.jsp")
     }
 )
-public class Register extends HttpServlet {
+public class RegisterServlet extends HttpServlet {
     private String SUCCESS_VIEW;
     private String ERROR_VIEW = "error.jsp";
 
@@ -43,11 +43,10 @@ public class Register extends HttpServlet {
         if(isInvalidEmail(email)){
             errors.add("邮箱格式不正确");
         }
-            if(userService.isUserExisted(account)){
-                errors.add("用户已存在");
-            }
+        if(userService.isUserExisted(account)) {
+            errors.add("用户已存在");
+        }
         if(isInvalidPassword(password)) {
-            System.out.println(password);
             errors.add("密码格式不正确");
         }
         String reslutPage = ERROR_VIEW;

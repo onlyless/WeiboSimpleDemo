@@ -14,7 +14,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 
 @WebServlet("/Draw.do")
-public class Draw extends HttpServlet {
+public class DrawServlet extends HttpServlet {
     private static final String PHOTO_PATH = "/WEB-INF/IMG_1057.JPG";
     private static final int FONT_SIZE = 20;
 

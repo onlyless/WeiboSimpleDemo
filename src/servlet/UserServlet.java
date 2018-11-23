@@ -16,7 +16,7 @@ import java.util.List;
 @WebServlet(urlPatterns = "/user/*",
 initParams = {
         @WebInitParam(name = "USER_VIEW",value = "/user.jsp"),
-        @WebInitParam(name = "ERROR_VIEW",value = "/index.jsp")
+        @WebInitParam(name = "ERROR_VIEW",value = "/user.jsp")
     }
 )
 public class UserServlet extends HttpServlet {
@@ -39,7 +39,7 @@ public class UserServlet extends HttpServlet {
         if(userService.isUserExisted(account)) {
             User user = new User();
             user.setUsername(username);
-            List<model.User> users = userService.getUsers(user);
+            List<User> users = userService.getUsers(user);
             req.setAttribute("users", users);
             req.setAttribute("username", username);
             req.getRequestDispatcher(USER_VIEW).forward(req, resp);

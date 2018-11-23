@@ -24,11 +24,12 @@ public class AccountDAOJdbcImpl implements AccountDAO {
         boolean existed = false;
         try {
             connection = dataSource.getConnection();
-            stmt = connection.prepareStatement("SELECT COUNT(1) FROM user WHERE username=?");
+            stmt = connection.prepareStatement("SELECT * FROM user WHERE username=?");
             stmt.setString(1,account.getName());
+            System.out.println(account.getName());
             ResultSet rs = stmt.executeQuery();
             if(rs.next()){
-                existed = (rs.getInt(1)==1);
+                existed = true;
             }
             stmt.close();
             connection.close();

@@ -1,6 +1,4 @@
-<%@ page import="model.User" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.text.SimpleDateFormat" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: onlyless
   Date: 11/22/18
@@ -14,43 +12,33 @@
 </head>
 <body>
 <%@include file="top.jsp"%>
-<%
-    List<User> users = (List<User>) request.getAttribute("users");
-    if(users!=null){
-%>
-<div>
-    <br>${requestScope.username}的微博
-</div>
-<table style="text-align: left;width: 510px;height: 88px">
-    <thead>
-    <tr><th><hr></th></tr>
-    </thead>
-    <tbody>
-    <%
-        for(User user:users){
-            %>
+<c:choose>
+    <c:when test="${requestScope.users!=null}">
+        <div>
+            <br>${requestScope.username}的微博
+        </div>
+        <table style="text-align: left;width: 510px;height: 88px">
+        <thead>
+            <tr><th><hr></th></tr>
+        </thead>
+        <tbody>
+        <c:forEach var="user" items="${requestScope.users}">
             <tr>
                 <td style="vertical-align: top">
-                    <%=user.getUsername()%>:<br>
-                    <%=user.getTxt()%><br>
-                    <%=user.getDate()%>
+                    ${user.username}:<br>
+                        ${user.txt}<br>
+                        ${user.date}
                     <hr>
                 </td>
             </tr>
-    <%
-        }
-    %>
-    </tbody>
-</table>
-<hr style="width: 100%;height: 1px">
-<%
-    }
-    else{
-%>
-<h1>${requestScope.username}用户不存在</h1>
-<%
-    }
-%>
-
+        </c:forEach>
+        </tbody>
+        </table>
+        <hr style="width: 100%;height: 1px">
+    </c:when>
+    <c:otherwise>
+        <h1>${requestScope.username}用户不存在</h1>
+    </c:otherwise>
+</c:choose>
 </body>
 </html>
