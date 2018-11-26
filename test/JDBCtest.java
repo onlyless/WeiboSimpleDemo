@@ -1,5 +1,7 @@
 import DAO.DAOImpl.AccountDAOJdbcImpl;
+import DAO.DAOImpl.RelationDAOJdbcImpl;
 import DAO.DAOImpl.UserDAOJdbcImpl;
+import Service.RelationService;
 import Service.UserService;
 import Utils.JdbcUtils;
 import Utils.StringEscapeUtils;
@@ -16,6 +18,7 @@ import java.util.List;
 public class JDBCtest {
     static DataSource dataSource = JdbcUtils.getInstance().getDateSource();
     static UserService userService = new UserService(new AccountDAOJdbcImpl(dataSource),new UserDAOJdbcImpl(dataSource));
+    static RelationService relationService = new RelationService(new RelationDAOJdbcImpl(dataSource));
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
     @Test
@@ -68,14 +71,29 @@ public class JDBCtest {
 
     @Test
     public void insertDate(){
-        try {
-            JdbcUtils.dataSource.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
+    }
+
+    @Test
+    public void testFans(){
+        User user = new User();
+        user.setUsername("aa");
+        List<User> fans = relationService.getFans(user);
+        System.out.println(fans.size());
+        for(User fan : fans){
+//            System.out.println(user1.getTxt()+" " + user1.getDate());
+            System.out.println(fan.getUsername());
         }
     }
 
     @Test
-    public void getDate(){
+    public void testFollows(){
+        User user = new User();
+        user.setUsername("admin");
+        List<User> follows = relationService.getFollows(user);
+        System.out.println(follows.size());
+        for(User follow:follows){
+            System.out.println(follow.getUsername());
+        }
+
     }
 }

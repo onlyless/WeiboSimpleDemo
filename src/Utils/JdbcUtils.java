@@ -3,11 +3,12 @@ package Utils;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 public class JdbcUtils {
-    public static ComboPooledDataSource dataSource = new ComboPooledDataSource();
+    public static ComboPooledDataSource dataSource ;
 
     private volatile static JdbcUtils jdbCutils;
 
     private JdbcUtils(){
+        dataSource = new ComboPooledDataSource();
     }
 
     public static JdbcUtils getInstance(){

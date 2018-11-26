@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = {
-        "/logout.do","/member.jsp","/message.do","/logout.jsp","/verify.do","/delete.do"
+        "/logout.do","/member.jsp","/message.do","/logout.jsp","/verify.do","/delete.do","/fans.do","/follows.do"
 },initParams = {
         @WebInitParam(name="LOGIN_VIEW",value = "index.jsp")
 })

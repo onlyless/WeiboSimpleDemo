@@ -24,6 +24,7 @@
         <a href="/success.jsp">success</a>
         <a href="/error.jsp">error</a>
         <a href="/Draw.do">Draw</a>
-        <a href="/user/admin">admin</a>
+        <a href="/fans.do">Fans</a>
+        <a href="/follows.do">Follows</a>
     </nav>
 </div>

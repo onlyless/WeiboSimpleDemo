@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
         Account account = new Account();
         account.setName(username);
         account.setPassword(password);
-        System.out.println(username+" "+password);
+//        System.out.println(username+" "+password);
         if(userService.checkLogin(account)){
             session.setAttribute("login",username);
             User user = new User();

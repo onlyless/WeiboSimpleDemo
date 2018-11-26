@@ -1,7 +1,9 @@
 package Listener;
 
 import DAO.DAOImpl.AccountDAOJdbcImpl;
+import DAO.DAOImpl.RelationDAOJdbcImpl;
 import DAO.DAOImpl.UserDAOJdbcImpl;
+import Service.RelationService;
 import Service.UserService;
 import Utils.JdbcUtils;
 
@@ -20,6 +22,7 @@ public class GossipListener implements ServletContextListener {
         JdbcUtils jdbcUtils = JdbcUtils.getInstance();
         DataSource dataSource = jdbcUtils.getDateSource();
         context.setAttribute("userService",new UserService(new AccountDAOJdbcImpl(dataSource),new UserDAOJdbcImpl(dataSource)));
+        context.setAttribute("relationService",new RelationService(new RelationDAOJdbcImpl(dataSource)));
     }
 
     @Override

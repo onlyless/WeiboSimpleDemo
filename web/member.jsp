@@ -1,6 +1,4 @@
-<%@ page import="java.util.List" %>
-<%@ page import="model.User" %>
-<%@ page import="Service.UserService" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: onlyless
   Date: 11/16/18

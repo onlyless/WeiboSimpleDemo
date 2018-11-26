@@ -26,7 +26,7 @@ public class UserDAOJdbcImpl implements UserDAO {
         List<User> users = null;
         try {
             connection = dataSource.getConnection();
-            stmt = connection.prepareStatement("SELECT * FROM message WHERE username = ?");
+            stmt = connection.prepareStatement("SELECT * FROM user WHERE username = ? ORDER BY date");
             stmt.setString(1,user.getUsername());
             ResultSet rs = stmt.executeQuery();
             users = new ArrayList<>();
@@ -51,7 +51,7 @@ public class UserDAOJdbcImpl implements UserDAO {
         SQLException exception = null;
         try {
             connection = dataSource.getConnection();
-            stmt = connection.prepareStatement("INSERT INTO message(id,username,date,message) VALUES (?,?,?,?)");
+            stmt = connection.prepareStatement("INSERT INTO user(id,username,date,message) VALUES (?,?,?,?)");
             stmt.setString(1,user.getId());
             stmt.setString(2,user.getUsername());
             stmt.setString(3,user.getDate());
@@ -71,7 +71,7 @@ public class UserDAOJdbcImpl implements UserDAO {
         SQLException exception = null;
         try {
             connection = dataSource.getConnection();
-            stmt = connection.prepareStatement("DELETE FROM message WHERE id=?");
+            stmt = connection.prepareStatement("DELETE FROM user WHERE id=?");
             stmt.setString(1,user.getId());
             stmt.executeUpdate();
             stmt.close();
