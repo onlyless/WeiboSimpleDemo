@@ -1,7 +1,8 @@
 package servlet;
 
 import Service.UserService;
-import Utils.StringEscapeUtils;
+import Utils.PasswordUtil;
+import Utils.StringEscapeUtil;
 import model.Account;
 
 import javax.servlet.ServletException;
@@ -35,8 +36,10 @@ public class RegisterServlet extends HttpServlet {
         String email = req.getParameter("email");
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        String id = StringEscapeUtils.getRandomString();
-        Account account = new Account(id,email,username,password);
+        String salt = PasswordUtil.generateSalt();
+        String id = StringEscapeUtil.getRandomString();
+        password = PasswordUtil.calculateMD5(password,salt);
+        Account account = new Account(id,email,username,password,salt);
         List<String> errors = new ArrayList<>();
         UserService userService = (UserService)getServletContext().getAttribute("userService");
 

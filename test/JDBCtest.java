@@ -3,8 +3,9 @@ import DAO.DAOImpl.RelationDAOJdbcImpl;
 import DAO.DAOImpl.UserDAOJdbcImpl;
 import Service.RelationService;
 import Service.UserService;
-import Utils.JdbcUtils;
-import Utils.StringEscapeUtils;
+import Utils.JdbcUtil;
+import Utils.PasswordUtil;
+import Utils.StringEscapeUtil;
 import model.Account;
 import model.User;
 import org.junit.Test;
@@ -16,15 +17,29 @@ import java.util.Date;
 import java.util.List;
 
 public class JDBCtest {
-    static DataSource dataSource = JdbcUtils.getInstance().getDateSource();
+    static DataSource dataSource = JdbcUtil.getInstance().getDateSource();
     static UserService userService = new UserService(new AccountDAOJdbcImpl(dataSource),new UserDAOJdbcImpl(dataSource));
     static RelationService relationService = new RelationService(new RelationDAOJdbcImpl(dataSource));
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
     @Test
+    public void addAccountTest(){
+        Account account = new Account();
+        account.setName("hello");
+        account.setId(StringEscapeUtil.getRandomString());
+        account.setEmail("74932@helo.com");
+        String password = "hello";
+        String salt = PasswordUtil.generateSalt();
+        password = PasswordUtil.calculateMD5(password,salt);
+        System.out.println(password+"\n"+salt);
+        account.setPassword(password);
+        account.setSalt(salt);
+        userService.add(account);
+    }
+    @Test
     public void usernametest() throws SQLException {
-        String username = "admin";
-        String password = "123456a";
+        String username = "hello";
+        String password = "hello";
         Account account = new Account();
         account.setName(username);
         account.setPassword(password);
@@ -35,7 +50,7 @@ public class JDBCtest {
     public void addMessage() {
         User user = new User();
         user.setUsername("admin");
-        user.setId(StringEscapeUtils.getRandomString());
+        user.setId(StringEscapeUtil.getRandomString());
         Date date = new Date();
         user.setDate(dateFormat.format(date));
         user.setTxt("hest");
@@ -61,16 +76,18 @@ public class JDBCtest {
         String s = "";
         String [] a = s.split("@@@");
         System.out.println(a[0]);
-        System.out.println(StringEscapeUtils.escapeHtml(user));
-        System.out.println(StringEscapeUtils.escapeHtml(ps));
-        System.out.println(StringEscapeUtils.escapeHtml("[b]hh[/b]"));
-        System.out.println(StringEscapeUtils.escapeHtml("[i]hh[/i]"));
-        System.out.println(StringEscapeUtils.escapeHtml("[big]hh[/big]"));
-        System.out.println(StringEscapeUtils.escapeHtml("[small]hh[/small]"));
+        System.out.println(StringEscapeUtil.escapeHtml(user));
+        System.out.println(StringEscapeUtil.escapeHtml(ps));
+        System.out.println(StringEscapeUtil.escapeHtml("[b]hh[/b]"));
+        System.out.println(StringEscapeUtil.escapeHtml("[i]hh[/i]"));
+        System.out.println(StringEscapeUtil.escapeHtml("[big]hh[/big]"));
+        System.out.println(StringEscapeUtil.escapeHtml("[small]hh[/small]"));
     }
 
     @Test
     public void insertDate(){
+        String a = "hello";
+        Integer b = 12;
     }
 
     @Test

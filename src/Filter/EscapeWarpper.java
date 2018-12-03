@@ -1,6 +1,6 @@
 package Filter;
 
-import Utils.StringEscapeUtils;
+import Utils.StringEscapeUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
@@ -14,7 +14,7 @@ public class EscapeWarpper extends HttpServletRequestWrapper {
     @Override
     public String getParameter(String name) {
         String value = getRequest().getParameter(name);
-        return StringEscapeUtils.escapeHtml(value);
+        return StringEscapeUtil.escapeHtml(value);
     }
 
     @Override

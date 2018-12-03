@@ -1,6 +1,6 @@
 package servlet;
 
-import Utils.VerifyUtils;
+import Utils.VerifyUtil;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
@@ -17,7 +17,7 @@ public class VerifyJpgServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) {
         resp.setContentType("image/jpg");
-        VerifyUtils verifyUtils = VerifyUtils.getInstance();
+        VerifyUtil verifyUtils = VerifyUtil.getInstance();
         try {
             OutputStream outputStream = resp.getOutputStream();
             JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(outputStream);

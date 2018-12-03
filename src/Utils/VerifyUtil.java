@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-public class VerifyUtils {
+public class VerifyUtil {
     private static final int PW = 70;
     private static final int PH = 35;
     private static Random random = new Random();
@@ -12,13 +12,13 @@ public class VerifyUtils {
     private String codes="012345678901234567890123456789abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ";
     private static Color bgColor = Color.BLACK;
     private String code;
-    private volatile static VerifyUtils generateCode;
+    private volatile static VerifyUtil generateCode;
 
-    public static VerifyUtils getInstance(){
+    public static VerifyUtil getInstance(){
         if(generateCode ==null){
-            synchronized (VerifyUtils.class){
+            synchronized (VerifyUtil.class){
                 if(generateCode ==null){
-                    generateCode = new VerifyUtils();
+                    generateCode = new VerifyUtil();
                 }
             }
         }

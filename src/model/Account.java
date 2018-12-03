@@ -5,14 +5,24 @@ public class Account {
     private String email;
     private String name;
     private String password;
+    private String salt;
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
 
     public Account(){}
 
-    public Account(String id, String email, String name, String password) {
+    public Account(String id, String email, String name, String password,String salt) {
         this.id = id;
         this.email = email;
         this.name = name;
         this.password = password;
+        this.salt = salt;
     }
 
 

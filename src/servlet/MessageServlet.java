@@ -1,7 +1,7 @@
 package servlet;
 
 import Service.UserService;
-import Utils.StringEscapeUtils;
+import Utils.StringEscapeUtil;
 import model.User;
 
 import javax.servlet.ServletException;
@@ -41,7 +41,7 @@ public class MessageServlet extends HttpServlet {
         String blabla = req.getParameter("blabla");
         if(blabla!=null&&blabla.length()!=0) {
             String username = (String) req.getSession(false).getAttribute("login");
-            User user = new User(StringEscapeUtils.getRandomString(), username, StringEscapeUtils.nowTime(),
+            User user = new User(StringEscapeUtil.getRandomString(), username, StringEscapeUtil.nowTime(),
                     blabla);
             userService.addUser(user);
             session.setAttribute("users",userService.getUsers(user));

@@ -5,7 +5,7 @@ import DAO.DAOImpl.RelationDAOJdbcImpl;
 import DAO.DAOImpl.UserDAOJdbcImpl;
 import Service.RelationService;
 import Service.UserService;
-import Utils.JdbcUtils;
+import Utils.JdbcUtil;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -19,8 +19,8 @@ public class GossipListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         ServletContext context = servletContextEvent.getServletContext();
-        JdbcUtils jdbcUtils = JdbcUtils.getInstance();
-        DataSource dataSource = jdbcUtils.getDateSource();
+        JdbcUtil jdbcUtil = JdbcUtil.getInstance();
+        DataSource dataSource = jdbcUtil.getDateSource();
         context.setAttribute("userService",new UserService(new AccountDAOJdbcImpl(dataSource),new UserDAOJdbcImpl(dataSource)));
         context.setAttribute("relationService",new RelationService(new RelationDAOJdbcImpl(dataSource)));
     }

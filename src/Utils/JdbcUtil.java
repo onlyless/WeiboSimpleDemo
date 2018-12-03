@@ -2,20 +2,20 @@ package Utils;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
-public class JdbcUtils {
+public class JdbcUtil {
     public static ComboPooledDataSource dataSource ;
 
-    private volatile static JdbcUtils jdbCutils;
+    private volatile static JdbcUtil jdbCutils;
 
-    private JdbcUtils(){
+    private JdbcUtil(){
         dataSource = new ComboPooledDataSource();
     }
 
-    public static JdbcUtils getInstance(){
+    public static JdbcUtil getInstance(){
         if(jdbCutils==null){
-            synchronized (JdbcUtils.class){
+            synchronized (JdbcUtil.class){
                 if(jdbCutils==null){
-                    jdbCutils = new JdbcUtils();
+                    jdbCutils = new JdbcUtil();
                 }
             }
         }

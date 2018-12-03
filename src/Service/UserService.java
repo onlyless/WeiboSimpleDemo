@@ -2,6 +2,7 @@ package Service;
 
 import DAO.AccountDAO;
 import DAO.UserDAO;
+import Utils.PasswordUtil;
 import model.Account;
 import model.User;
 
@@ -29,7 +30,10 @@ public class UserService {
     public boolean checkLogin(Account account){
         if(account.getName()!=null && account.getPassword() != null){
             Account storeAcct = accountDAO.getAccount(account);
-            return storeAcct != null && storeAcct.getPassword().equals(account.getPassword());
+            String password = account.getPassword();
+            String salt = storeAcct.getSalt();
+            password = PasswordUtil.calculateMD5(password,salt);
+            return storeAcct != null && storeAcct.getPassword().equals(password);
         }
         return false;
     }

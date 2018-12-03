@@ -26,7 +26,6 @@ public class AccountDAOJdbcImpl implements AccountDAO {
             connection = dataSource.getConnection();
             stmt = connection.prepareStatement("SELECT * FROM account WHERE username=?");
             stmt.setString(1,account.getName());
-//            System.out.println(account.getName());
             ResultSet rs = stmt.executeQuery();
             if(rs.next()){
                 existed = true;
@@ -49,11 +48,12 @@ public class AccountDAOJdbcImpl implements AccountDAO {
         SQLException exception = null;
         try {
             connection = dataSource.getConnection();
-            stmt = connection.prepareStatement("INSERT INTO account(id,email,username,password) VALUES (?,?,?,?)");
+            stmt = connection.prepareStatement("INSERT INTO account(id,email,username,password,salt) VALUES (?,?,?,?,?)");
             stmt.setString(1,account.getId());
             stmt.setString(2,account.getEmail());
             stmt.setString(3,account.getName());
             stmt.setString(4,account.getPassword());
+            stmt.setString(5,account.getSalt());
             stmt.executeUpdate();
             stmt.close();
             connection.close();
@@ -75,7 +75,7 @@ public class AccountDAOJdbcImpl implements AccountDAO {
             ResultSet rs = stmt.executeQuery();
             if(rs.next()){
                 acct = new Account(rs.getString("id"),rs.getString("email"),account.getName(),rs.getString
-                        ("password"));
+                        ("password"),rs.getString("salt"));
             }
             stmt.close();
             connection.close();

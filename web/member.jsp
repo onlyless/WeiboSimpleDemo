@@ -41,8 +41,10 @@
             </tr>
             <c:forEach var="user" items="${sessionScope.users}">
                 <tr>
-                    <td>${user.date}</td>
-                    <td>${user.txt}</td>
+                    <%--<td><c:out value="${user.date}"/></td>--%>
+                    <%--<td><c:out value="${user.txt}"/></td>--%>
+                        <td>${user.date}</td>
+                        <td>${user.txt}</td>
                     <td><a href="/delete.do?id=${user.id}">删除</a> </td>
                 </tr>
             </c:forEach>

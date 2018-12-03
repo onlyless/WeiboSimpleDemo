@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
-public class StringEscapeUtils {
+public class StringEscapeUtil {
     private static Random random = new Random();
     private static String alp = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:dd");
@@ -19,9 +19,9 @@ public class StringEscapeUtils {
         return builder.toString();
     }
     public static String escapeHtml(String value) {
-        value = value.replaceAll("<","&lt;");
-        value = value.replaceAll(">","&gt;");
-        value = value.replaceAll("\"","&quot;");
+//        value = value.replaceAll("<","&lt;");
+//        value = value.replaceAll(">","&gt;");
+//        value = value.replaceAll("\"","&quot;");
         value = value.replaceAll("\\[b\\]","<b>");
         value = value.replaceAll("\\[/b\\]","</b>");
         value = value.replaceAll("\\[i\\]","<i>");
